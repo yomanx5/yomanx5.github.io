@@ -30,9 +30,9 @@ var MapsLib = {
 
   //*MODIFY Fusion Tables Requirement* API key. found at https://code.google.com/apis/console/
   //*Important* this key is for demonstration purposes. please register your own.
-  googleApiKey:       "AIzaSyCOmC46B8kGL5E3hPUyeQy7THCAlyJQZsM&callback=initMap",
+  googleApiKey:       "AIzaSyDWI-uh-hTBmGL4KVF1t9ulHk2oyCB8bfs&callback=initMap",
 
-	 //Cambiada por la mia.
+	 //Cambiada por la mia. antigua  googleApiKey:       "AIzaSyCOmC46B8kGL5E3hPUyeQy7THCAlyJQZsM&callback=initMap",
 	
 	
   //MODIFY name of the location column in your Fusion Table.
