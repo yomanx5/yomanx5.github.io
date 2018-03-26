@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * TEMPLATE INSTRUCTIONS: Look for sections below marked MODIFY and adjust to fit your data and index.html page
  * Learn more at
  * Data Visualization book-in-progress by Jack Dougherty at Trinity College CT
