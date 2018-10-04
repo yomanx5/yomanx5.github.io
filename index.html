@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang='en'>
   <head>
-    <!--MODIFY title that appears in web browser tab -->
-    <title>Mapa Tal-Tal, power by Google Fusion tables</title>
+    <!--Version en Ingles del Html -->
+    <title>LIBAMET MAP SERVICES Tal-Tal, power by Google Fusion tables</title>
     <meta charset='utf-8' />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta content='' name='description' />
@@ -28,12 +28,12 @@
             <span class="icon-bar"></span>
           </button>
           <!--MODIFY title of web page, and link destination if desired-->
-          <a class='navbar-brand' href='index.html'>CICITEM Mapas de concentracion</a>
+          <a class='navbar-brand' href='index.html'>LIBAMET MAP SERVICES</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <!--MODIFY link and text to point to your own site if desired-->
-            <li class='active'><a href="http://cicitem.cl/website/">Conce mas sobre nosotros</a></li>
+            <li class='active'><a href="https://yomanx5.github.io/">Spanish version</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -45,45 +45,45 @@
           <!--<p>View <a href="http://github.com/jackdougherty/fusion-point-polygon-list">code on GitHub</a>. Based on <a href='http://derekeder.com/searchable_map_template/'>Searchable Map Template v1.3</a> by <a href='http://derekeder.com'>Derek Eder</a> with <a href='http://support.google.com/fusiontables/answer/2571232?hl=en&ref_topic=1652595'>Google Fusion Tables</a></p>   -->
           <div class='well'>
             <h4>
-              Direccion <small>(<a id='find_me' href='#'>Mi posicion</a>)</small>
+              Adress <small>(<a id='find_me' href='#'>My posicion</a>)</small>
             </h4>
             <p>
-              <input class='form-control' id='search_address' placeholder='Ingresa una direccion' type='text' />
+              <input class='form-control' id='search_address' placeholder='Enter an adress' type='text' />
             </p>
             <p>
               <label>
-                Dentro de
+                Range in
                 <select id='search_radius'>
                   <!--MODIFY search options. Values are metric: 1610 meters = 1 mile -->
-                  <option value='100'>1 Cuadra</option>
-                  <option value='500'>1/2 Kilmetro</option>
-                  <option value='1000'>1 Kilometro</option>
-                  <option value='2000'>2 Kilometros</option>
+                  <option value='100'>1 Street block</option>
+                  <option value='500'>1/2 kilometers </option>
+                  <option value='1000'>1 kilometers</option>
+                  <option value='2000'>2 kilometers</option>
                 </select>
               </label>
             </p>
 
             <!--MODIFY Point layer legend heading, labels (such as Interdistrict), and colors (green, blue, yellow, red, purple) to match your data -->
 			<p style="font-size:4px"> &nbsp </p>
-			<center><button type="button" id='Nothing' > Eliminar todos los puntos del mapa </button></center>
+			<center><button type="button" id='Nothing' > Clear all data points on the map </button></center>
 			<p style="font-size:4px"> &nbsp </p>
 			<div id="contentBox1" style="margin:0px auto; width:100%"><font size="2" color="black">
 				<div id="column1" style="float:left; margin:0; width:36%;">
 					<h5 align="left">
-						<p style="font-size:14px"> Búsqueda por Profundidad </p>
+						<p style="font-size:14px"> Search by Depth </p>
 					</h5>
 					<ul class='inputs-list unstyled' style="padding-left:0px"><small>
-						<input type="radio" name="depth" value="superficial" checked>Superficial<br>
-						<input type="radio" name="depth" value="profundidad">Profundidad<br>
-						<input type="radio" name="depth" value="">Sin especificar
+						<input type="radio" name="depth" value="superficial" checked>Low depth<br>
+						<input type="radio" name="depth" value="profundidad">High depth<br>
+						<input type="radio" name="depth" value="">Unspecified
 					</small></ul>
 				</div>
 				<div id="contentBox2" style="float:left; margin:0; width:64%;">
 					<h5 align="left">
-						<p style="font-size:14px"> Búsqueda por Zona </p>
+						<p style="font-size:14px"> Search by zone </p>
 					</h5>
-					<button type="button" id='zone23'><small>Marcar todos</small></button>
-					<button type="button" id='zone24'><small>Desmarcar todos</small></button>
+					<button type="button" id='zone34'><small>Mark all</small></button>
+					<button type="button" id='zone35'><small>Clear all</small></button>
 					<div id="subContentBox1" style="margin:0px auto; width:100%">
 						<ul class='inputs-list unstyled' style="padding-left:0px"><small>
 							<div id="subColumn1" style="float:left; margin:0; width:33%;">
@@ -127,9 +127,7 @@
 								  <span class='filter-box filter-green'></span>
 								  8
 								</label>
-							</div>
-							<div id="subColumn2" style="float:left; margin:0; width:33%;">
-								<label class='checkbox inline'>
+						<label class='checkbox inline'>
 								  <input type='checkbox' id='zone9' name='zone'/>
 								  <span class='filter-box filter-green'></span>
 								  9
@@ -144,6 +142,11 @@
 								  <span class='filter-box filter-green'></span>
 								  11
 								</label>
+                            
+                            
+                            </div>
+							<div id="subColumn2" style="float:left; margin:0; width:33%;">
+							
 								<label class='checkbox inline'>
 								  <input type='checkbox' id='zone12' name='zone'/>
 								  <span class='filter-box filter-green'></span>
@@ -169,9 +172,7 @@
 								  <span class='filter-box filter-green'></span>
 								  16
 								</label>
-							</div>
-							<div id="subColumn3" style="float:left; margin:0; width:33%;">
-								<label class='checkbox inline'>
+							<label class='checkbox inline'>
 								  <input type='checkbox' id='zone17' name='zone'/>
 								  <span class='filter-box filter-green'></span>
 								  17
@@ -201,6 +202,76 @@
 								  <span class='filter-box filter-green'></span>
 								  22
 								</label>
+
+                            
+                            
+                            
+                            </div>
+							<div id="subColumn3" style="float:left; margin:0; width:33%;">
+								                             <!--Ojo en el programa original solo puse 22 zonas, ahora viene una expación que espero que funcione, seguramente deben modificarce mas areas del maps_lib tambien -->
+                                <label class='checkbox inline'>
+								  <input type='checkbox' id='zone23' name='zone'/>
+								  <span class='filter-box filter-green'></span>
+								  23
+								</label>
+                                <label class='checkbox inline'>
+								  <input type='checkbox' id='zone24' name='zone'/>
+								  <span class='filter-box filter-green'></span>
+								  24
+								</label>
+                                <label class='checkbox inline'>
+								  <input type='checkbox' id='zone25' name='zone'/>
+								  <span class='filter-box filter-green'></span>
+								  25
+								</label>
+                                
+                                <label class='checkbox inline'>
+								  <input type='checkbox' id='zone26' name='zone'/>
+								  <span class='filter-box filter-green'></span>
+								  26
+								</label>
+                                <label class='checkbox inline'>
+								  <input type='checkbox' id='zone27' name='zone'/>
+								  <span class='filter-box filter-green'></span>
+								  27
+								</label>
+                                <label class='checkbox inline'>
+								  <input type='checkbox' id='zone28' name='zone'/>
+								  <span class='filter-box filter-green'></span>
+								  28
+								</label>
+                                <label class='checkbox inline'>
+								  <input type='checkbox' id='zone29' name='zone'/>
+								  <span class='filter-box filter-green'></span>
+								  29
+								</label>
+                                <label class='checkbox inline'>
+								  <input type='checkbox' id='zone30' name='zone'/>
+								  <span class='filter-box filter-green'></span>
+								  30
+								</label>
+                                <label class='checkbox inline'>
+								  <input type='checkbox' id='zone31' name='zone'/>
+								  <span class='filter-box filter-green'></span>
+								  31
+								</label>
+                                <label class='checkbox inline'>
+								  <input type='checkbox' id='zone32' name='zone'/>
+								  <span class='filter-box filter-green'></span>
+								  32
+								</label>
+                                <label class='checkbox inline'>
+								  <input type='checkbox' id='zone33' name='zone'/>
+								  <span class='filter-box filter-green'></span>
+								  33
+								</label>
+                                
+                            
+                                
+                                
+                                
+                                
+                                
 							</div>
 						  </small></li>
 						</ul>
@@ -211,11 +282,11 @@
 				<p style="font-size:10px"> &nbsp </p>
 			</div>
 			<h4 align="left">
-				<p style="font-size:14px"> Datos mostrados por Coordenada: </p>
+				<p style="font-size:14px"> Displayed data in the info-box's coordinate: </p>
 			</h4>
 			<font size="2" color="black">
-			<button type="button" id='Show42'><small>Marcar todos</small></button>		
-			<button type="button" id='Show43'><small>Desmarcar todos</small></button>				
+			<button type="button" id='Show90'><small>Mark all</small></button>		
+			<button type="button" id='Show91'><small>Clear all</small></button>				
 			<div id="contentBox2" style="margin:0px; width:100%"><font size="2" color="black">
 				<div id="column3" style="float:left; margin:0; width:70%;">
 					<ul class='inputs-list unstyled' style="padding-left:0px">
@@ -223,37 +294,37 @@
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show0' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Nombre Muestra
+						  Sample Name 
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show1' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Fecha Muestra
+						  Sample Date
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show2' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Profundidad
+						  Depth
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show3' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Número Zona
+						  Zone
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show4' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Categoría Minera
+						  Mining Category             
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show5' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Coordenadas
+						  Coordinate
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show6' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Pot. Redox(mV)
+						  Redox Pot. (mV)
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show7' name='show'/>
@@ -263,174 +334,388 @@
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show8' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Conductividad (µS/cm)
+						  Conductivity (µS/cm)
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show9' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Mo
+						  Ag XRF
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show10' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Zr
+						  Ag ICP
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show11' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Sr
+						  AI iCP
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show12' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  U
+						  As ICP
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show13' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Rb
+						  As XRF
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show14' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Th
+						  B ICP
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show15' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Pb
+						  Ba ICP 
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show16' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Au
+						  Ba XRF
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show17' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Se
+						  Be ICP
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show18' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  As
+						  Bi ICP
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show19' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Hg
+						  Ca ICP
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show20' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Zn
+						  Ca XRF
 						</label>
-					</div>
-					<div id="column4" style="float:left; margin:0; width:30%;">
-						<label class='checkbox inline'>
+                        <label class='checkbox inline'>
 						  <input type='checkbox' id='Show21' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  W
+						  Cd ICP
 						</label>
-						<label class='checkbox inline'>
+
+                        <label class='checkbox inline'>
 						  <input type='checkbox' id='Show22' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Cu
+						  Cd XRF
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show23' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Ni
+						  Co ICP
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show24' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Co
+						  Co XRF
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show25' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Fe
+						  Cr ICP
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show26' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Mn
+						  Cr XRF
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show27' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Cr
+						  Cs XRF
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show28' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  V
+						  Cu ICP
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show29' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Ti
+						  Cu XRF
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show30' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Sc
+						  Fe ICP
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show31' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Ca
+						  Fe XRF
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show32' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  K
+						  Ga ICP
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show33' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  S
+						  Hg ICP
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show34' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Ba
+						  Hg XRF
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show35' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Cs
+						  K ICP
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show36' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Te
+						  K XRF
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show37' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Sb
+						  La ICP
 						</label><label class='checkbox inline'>
 						  <input type='checkbox' id='Show38' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Sn
+						  Li ICP
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show39' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Cd
+						  Mg ICP
 						</label>
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show40' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Ag
+						  Mn ICP
 						</label>
+                          
+                          
+                          
+                          
+                          
+					</div>
+					<div id="column4" style="float:left; margin:0; width:30%;">
+    
 						<label class='checkbox inline'>
 						  <input type='checkbox' id='Show41' name='show'/>
 						  <span class='filter-box filter-blue'></span>
-						  Pd
+						  Mn XRF
 						</label>
+                        
+                        
+                        
+                        
+						<label class='checkbox inline'>
+						  <input type='checkbox' id='Show42' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Mo ICP
+						</label>
+						<label class='checkbox inline'>
+						  <input type='checkbox' id='Show43' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Mo XRF
+						</label>
+            			<label class='checkbox inline'>
+						  <input type='checkbox' id='Show44' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Na ICP
+						</label>
+            			<label class='checkbox inline'>
+						  <input type='checkbox' id='Show45' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Ni ICP
+						</label>
+            			<label class='checkbox inline'>
+						  <input type='checkbox' id='Show46' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Ni XRF
+						</label>
+            			<label class='checkbox inline'>
+						  <input type='checkbox' id='Show47' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  P ICP
+						</label>                        
+                        <label class='checkbox inline'>
+						  <input type='checkbox' id='Show48' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Pb ICP
+						</label>
+                        <label class='checkbox inline'>
+						  <input type='checkbox' id='Show49' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Pb XRF
+						</label>
+                        <label class='checkbox inline'>
+						  <input type='checkbox' id='Show50' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Pd XRF
+						</label>
+                        <label class='checkbox inline'>
+						  <input type='checkbox' id='Show51' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Rb XRF
+						</label>
+                        <label class='checkbox inline'>
+						  <input type='checkbox' id='Show52' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  S ICP
+						</label>
+                        <label class='checkbox inline'>
+						  <input type='checkbox' id='Show53' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  S XRF
+						</label>
+                        <label class='checkbox inline'>
+						  <input type='checkbox' id='Show54' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Sb ICP
+						</label>
+                        <label class='checkbox inline'>
+						  <input type='checkbox' id='Show55' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Sb XRF
+						</label>
+                        <label class='checkbox inline'>
+						  <input type='checkbox' id='Show56' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Sc ICP 
+						</label>
+                        <label class='checkbox inline'>
+						  <input type='checkbox' id='Show57' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Sc XRF
+						</label>
+                        <label class='checkbox inline'>
+						  <input type='checkbox' id='Show58' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Se ICP
+						</label>
+                        <label class='checkbox inline'>
+						  <input type='checkbox' id='Show59' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Se XRF
+						</label>
+                       <label class='checkbox inline'>
+						  <input type='checkbox' id='Show60' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Sn ICP
+						</label>
+                       <label class='checkbox inline'>
+						  <input type='checkbox' id='Show61' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Sn XRF
+						</label> 
+                       <label class='checkbox inline'>
+						  <input type='checkbox' id='Show62' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Sr ICP
+						</label>                        
+                        <label class='checkbox inline'>
+						  <input type='checkbox' id='Show63' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Sr XRF
+						</label>
+                       <label class='checkbox inline'>
+						  <input type='checkbox' id='Show64' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Te XRF
+						</label>                        
+                       <label class='checkbox inline'>
+						  <input type='checkbox' id='Show65' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Th ICP
+						</label>                        
+                       <label class='checkbox inline'>
+						  <input type='checkbox' id='Show66' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Th XRF
+						</label>                        
+                       <label class='checkbox inline'>
+						  <input type='checkbox' id='Show67' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Ti ICP
+						</label>                        
+                       <label class='checkbox inline'>
+						  <input type='checkbox' id='Show68' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Ti XRF
+						</label>
+                       <label class='checkbox inline'>
+						  <input type='checkbox' id='Show69' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Tl ICP
+						</label>                        
+                       <label class='checkbox inline'>
+						  <input type='checkbox' id='Show70' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  U ICP
+						</label>                        
+                       <label class='checkbox inline'>
+						  <input type='checkbox' id='Show71' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  U XRF
+						</label>                          
+                       <label class='checkbox inline'>
+						  <input type='checkbox' id='Show72' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  V ICP
+						</label>                          
+                       <label class='checkbox inline'>
+						  <input type='checkbox' id='Show73' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  V XRF
+						</label>                          
+                       <label class='checkbox inline'>
+						  <input type='checkbox' id='Show74' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  W ICP
+						</label>  
+                       <label class='checkbox inline'>
+						  <input type='checkbox' id='Show75' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  W XRF
+						</label>                          
+                        <label class='checkbox inline'>
+						  <input type='checkbox' id='Show76' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Zn ICP
+						</label>  
+                        <label class='checkbox inline'>
+						  <input type='checkbox' id='Show77' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Zn XRF
+						</label>  
+                       <label class='checkbox inline'>
+						  <input type='checkbox' id='Show78' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Zr XRF
+						</label>  
+                       <label class='checkbox inline'>
+						  <input type='checkbox' id='Show79' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Altura SNM (m)2
+						</label>                          
+                       <label class='checkbox inline'>
+						  <input type='checkbox' id='Show80' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Geomorfología
+						</label>                          
+                       <label class='checkbox inline'>
+						  <input type='checkbox' id='Show81' name='show'/>
+						  <span class='filter-box filter-blue'></span>
+						  Geologia
+						</label>
+                         
+                        
+                        
 					  </small></li>
 					</div>
 				</ul>
@@ -439,7 +724,48 @@
 			<div class='well'>
 			  <div id='results_list'></div>
 			</div>
-			
+		
+         <!-- Aca, de alguna forma incertar lo de la tabla de fusion...de alguna forma-->       
+           
+                
+                
+                
+                
+                
+                
+            <h4 align="left">
+				<p style="font-size:14px"> Select polygon layer option: </p>          <!-- Lo mas probable es que debo cambiar el h4, que ya esta ocupado-->       
+             <!--MODIFY Polygon layers legend heading, labels (such as Polygon layer 1) to match your data, and related variables in maps_lib.js file -->
+              <!--Polygon layers-->
+            </h4>
+            <ul class='inputs-list unstyled'>
+              <li>
+                <label class='radio inline'>
+                  <input type='radio' name='types' id='rbPolygon1' checked />
+                  Polygon layer 1
+                </label>
+              </li>
+        <!--Polygon layers        <li>
+                <label class='radio inline'>
+                  <input type='radio' name='types' id='rbPolygon2' />
+                  Polygon layer 2
+                </label>
+              </li>
+Esto es un boton par el segundo boton de poligono               -->
+              <li>
+                <label class='radio inline'>
+                  <input type='radio' name='types' id='rbPolygon0' />
+                  Off
+                </label>
+              </li>
+            </ul>      
+                
+                
+           <!--La inclusion del menú poligonos, aparentemente funciona -->     
+                
+                
+                
+       <!-- El programa original empieza aqui con el div class = 'clearfix' -->           
 			<div class='clearfix'></div>
             <p class='pull-left'>
               <a class='btn btn-primary' id='search' href='#'>
@@ -454,7 +780,7 @@
             <p class='pull-right'>
               <a class='btn btn-default' id='viewmode' href='#'>
                 <i class='glyphicon glyphicon-list-alt'></i>
-                Lista de puntos
+                Data list view
               </a>
             </p>
             <div class='clearfix'></div>
@@ -471,7 +797,8 @@
           <div id='map_canvas'></div>
           <div id='listview' style="display:none;"></div>
           <!--MODIFY link to publicly display your Google Fusion Tables data table, source, and text   original   https://www.google.com/fusiontables/DataSource?docid=1WoxNIvjGQzQAk7B965hwVQOIl04f-Xn09JuTLu03   -->
-          <p>Aqui puedes encontrar <a href='https://www.google.com/fusiontables/DataSource?docid=1rgEJ1-zdluRM7j35ueDcii2QCVPF7iSsUrjAZ-AN' target='blank'>La base de datos</a> Perteneciente a:  <a href='http://cicitem.cl/website/quienes-somos/' target='_blank'>CICITEM</a> -- Este mapa, esta basado en  <a href='http://gtkdata.gtk.fi/TapirEN/index.html' target='_blank'>TAPIR </a> Creado por <a href='http://en.gtk.fi/' target='_blank'>The Geological survey of Finland</a></p>
+          <p>Here you can find <a href='https://fusiontables.google.com/DataSource?docid=1okfkLjlPceQtAMn83VYyNpUkjnAxcxDOH18DkJDj' target='blank'>the database</a> that belongs to:  <a href='http://cicitem.cl/website/quienes-somos/' target='_blank'>CICITEM</a>
+            </p>
         </div>
       </div>
     </div>
@@ -532,13 +859,13 @@
 
           $('#viewmode').click(function(){
             if ($('#map_canvas').is(":visible")){
-              $('#viewmode').html("<i class='glyphicon glyphicon-map-marker'></i> Vista del Mapa");
+              $('#viewmode').html("<i class='glyphicon glyphicon-map-marker'></i> Map view");
               $('#listview').show();
               $('#map_canvas').hide();
             }
 
             else {
-              $('#viewmode').html("<i class='glyphicon glyphicon-list-alt'></i> Lista de puntos");
+              $('#viewmode').html("<i class='glyphicon glyphicon-list-alt'></i> Point´s list");
               $('#map_canvas').show();
               $('#listview').hide();
             }

@@ -26,7 +26,15 @@ var MapsLib = {
 
   //MODIFY the encrypted Table IDs of your Fusion Tables (found under File => About)
   //NOTE: numeric IDs will be depricated soon
-  fusionTableId:      "1rgEJ1-zdluRM7j35ueDcii2QCVPF7iSsUrjAZ-AN", //Point data layer  Original: 1WoxNIvjGQzQAk7B965hwVQOIl04f-Xn09JuTLu03                        
+  fusionTableId:      "1wXBR9lB6qM6ZfaeIp95AkqqSApDzd3oAI_p48g_S", // datos solo sup Base-datos-final del proyecto
+    // base de datos solo superficie completa 1okfkLjlPceQtAMn83VYyNpUkjnAxcxDOH18DkJDj
+    // datos de Base de datos Mapa FONDEF.  Point data layer  Original: 1rgEJ1-zdluRM7j35ueDcii2QCVPF7iSsUrjAZ-AN
+    // base de datos completa, pero no compila, por no compatibiidad de nombres
+    //  fusionTableId:      "1rgEJ1-zdluRM7j35ueDcii2QCVPF7iSsUrjAZ-AN"  // tabla de datos antigua datos fonde-c
+    // 19Yr6jjhl4LThlL_VeDBB5yqcvv8dLRK0HePYyQCd, tabla tipo b funciona
+
+  polygon1TableID:    "1QCZbdyN0hQfB8fBdhDz2-zmbdvIvS3VS_qcKA7s4", //Outline map layer of CT town boundaries, original polygon1TableID:    "1ceippR4giBiF-pT9PE1YAUvebFp6_NKvYriccYo"
+  polygon2TableID:    "1VopQGBhRKyyk25EIA5ptScvULxR68d43RhZ1ycM", //Thematic map layer of selected CT school districts
 
   //*MODIFY Fusion Tables Requirement* API key. found at https://code.google.com/apis/console/
   //*Important* this key is for demonstration purposes. please register your own.
@@ -86,6 +94,37 @@ var MapsLib = {
     });
 
     MapsLib.searchrecords = null;
+      
+      
+    // Aca esta incorporado el polygono, 1 y 2 ...sin embargo esto debe modificarse  
+      
+        // MODIFY if needed: defines background polygon1 and polygon2 layers
+    MapsLib.polygon1 = new google.maps.FusionTablesLayer({
+      query: {
+        from:   MapsLib.polygon1TableID,
+        select: "geometry"
+      },
+      styleId: 2,
+      templateId: 2
+    });
+
+    MapsLib.polygon2 = new google.maps.FusionTablesLayer({
+      query: {
+        from:   MapsLib.polygon2TableID,
+        select: "geometry"
+      },
+      styleId: 2,
+      templateId: 2
+    });
+  
+      // Aca se acaba la inclusion ! ojo esta sujeto a modificaciones
+      
+      
+      
+      
+      
+      
+      
 
     //reset filters
     $("#search_address").val(MapsLib.convertToPlainString($.address.parameter('address')));
@@ -95,10 +134,19 @@ var MapsLib = {
     $("#result_box").hide();
 	$(":checkbox").prop("checked", "checked");
     
+      
+      
     //-----custom initializers -- default setting to display Polygon1 layer
         
+      // Agregado del template, para incializar el box de polygon1
+          $("#rbPolygon0").attr("checked", "checked"); 
+        
+      
     //-----end of custom initializers-------
 
+      
+      
+      
     //run the default search
     MapsLib.doSearch();
   },
@@ -106,6 +154,23 @@ var MapsLib = {
   doSearch: function(location) {
 	  
     MapsLib.clearSearch();
+      
+      
+      // Agregado, del template, ojo se puede mejorar ! o se debe ser mejorar
+      
+          // MODIFY if needed: shows background polygon layer depending on which checkbox is selected
+    if ($("#rbPolygon1").is(':checked')) {
+      MapsLib.polygon1.setMap(map);
+    }
+    else if ($("#rbPolygon2").is(':checked')) {
+      MapsLib.polygon2.setMap(map);
+    }
+      
+      // Fin de pegado
+      
+      
+      
+      
 
     var address = $("#search_address").val();
     MapsLib.searchRadius = $("#search_radius").val();
@@ -121,13 +186,13 @@ var MapsLib = {
 	
 	//tempWhereClause.push($('input[name=depth]:checked').val());
 	
-	$('#zone23').click(function() {$('input[name=zone]').prop('checked', true);MapsLib.doSearch();});
-	$('#zone24').click(function() {$('input[name=zone]').prop('checked', false);MapsLib.doSearch();});
-	$('#Show42').click(function() {$('input[name=show]').prop('checked', true);MapsLib.doSearch();});
-	$('#Show43').click(function() {$('input[name=show]').prop('checked', false);MapsLib.doSearch();});
+	$('#zone34').click(function() {$('input[name=zone]').prop('checked', true);MapsLib.doSearch();});
+	$('#zone35').click(function() {$('input[name=zone]').prop('checked', false);MapsLib.doSearch();});
+	$('#Show90').click(function() {$('input[name=show]').prop('checked', true);MapsLib.doSearch();});
+	$('#Show91').click(function() {$('input[name=show]').prop('checked', false);MapsLib.doSearch();});
 	
 	if ($('input[name=depth]:checked').val()=="superficial"){
-		tempWhereClause.push("0-20");
+		tempWhereClause.push("20");
 		for (i=1;i<=32;i++){
 			tempWhereClause.push(String(i));
 		}
@@ -162,6 +227,17 @@ var MapsLib = {
 	if ( $("#zone20").is(':checked')) tempWhereClause.push("20");
 	if ( $("#zone21").is(':checked')) tempWhereClause.push("21");
 	if ( $("#zone22").is(':checked')) tempWhereClause.push("22");
+      if ( $("#zone23").is(':checked')) tempWhereClause.push("23");
+      if ( $("#zone24").is(':checked')) tempWhereClause.push("24");
+      if ( $("#zone25").is(':checked')) tempWhereClause.push("25");
+      if ( $("#zone26").is(':checked')) tempWhereClause.push("26");
+      if ( $("#zone27").is(':checked')) tempWhereClause.push("27");
+      if ( $("#zone28").is(':checked')) tempWhereClause.push("28");
+      if ( $("#zone29").is(':checked')) tempWhereClause.push("29");
+      if ( $("#zone30").is(':checked')) tempWhereClause.push("30");
+      if ( $("#zone31").is(':checked')) tempWhereClause.push("31");
+      if ( $("#zone32").is(':checked')) tempWhereClause.push("32");
+      if ( $("#zone33").is(':checked')) tempWhereClause.push("33");
     whereClause += " AND " + type_column + " IN ('" + tempWhereClause.join("','") + "')";
 	
 	$('#Nothing').click(function() {
@@ -265,48 +341,98 @@ var MapsLib = {
 		// Extract various columns from Fusion Table
 		var HTML;
 		HTML = "<div class='googft-info-window'>";	
-		if ( $("#Show0").is(':checked')) HTML += "<strong>Nombre Muestra</strong>:" 		+ e.row['Nombre muestra'].value 		+ "<br>";
-		if ( $("#Show1").is(':checked')) HTML += "<strong>Fecha Muestra</strong>:" 			+ e.row['Fecha toma muestra 11'].value 	+ "<br>";
-		if ( $("#Show2").is(':checked')) HTML += "<strong>Profundidad cm</strong>:" 		+ e.row['profundidad (cm)'].value 		+ "<br>";
-		if ( $("#Show3").is(':checked')) HTML += "<strong>Número Zona</strong>:" 			+ e.row['Número de Zona'].value 		+ "<br>";
-		if ( $("#Show4").is(':checked')) HTML += "<strong>Categoría Minera</strong>:" 		+ e.row['Categoría Minera'].value 		+ "<br>";
-		if ( $("#Show5").is(':checked')) HTML += "<strong>Coordenadas</strong>:" 			+ e.row['Coordenadas'].value 			+ "<br>";
+		if ( $("#Show0").is(':checked')) HTML += "<strong>Sample Name</strong>:" 		+ e.row['Nombre muestra'].value 		+ "<br>";
+		if ( $("#Show1").is(':checked')) HTML += "<strong>Sample date</strong>:" 			+ e.row['Fecha toma muestra 11'].value 	+ "<br>";
+		if ( $("#Show2").is(':checked')) HTML += "<strong>Depth cm</strong>:" 		+ e.row['profundidad (cm)'].value 		+ "<br>";
+		if ( $("#Show3").is(':checked')) HTML += "<strong>Zone</strong>:" 			+ e.row['Número de Zona'].value 		+ "<br>";
+		if ( $("#Show4").is(':checked')) HTML += "<strong>Mining Category</strong>:" 		+ e.row['Categoría Minera'].value 		+ "<br>";
+		if ( $("#Show5").is(':checked')) HTML += "<strong>Coordinates</strong>:" 			+ e.row['Coordenadas'].value 			+ "<br>";
 		if ( $("#Show6").is(':checked')) HTML += "<strong>Pot. Redox mV</strong>:" 			+ e.row['Potencial Redox (mV)'].value 	+ "<br>";
 		if ( $("#Show7").is(':checked')) HTML += "<strong>pH</strong>:" 					+ e.row['pH'].value 					+ "<br>";
 		if ( $("#Show8").is(':checked')) HTML += "<strong>Conduct. µS/cm</strong>:" 		+ e.row['Conductividad (µS/cm)'].value 	+ "<br>";
-		if ( $("#Show9").is(':checked')) HTML += "<strong>Mo</strong>:" 					+ e.row['Mo'].value 					+ "<br>";
-		if ( $("#Show10").is(':checked')) HTML += "<strong>Zr</strong>:" 					+ e.row['Zr'].value 					+ "<br>";
-		if ( $("#Show11").is(':checked')) HTML += "<strong>Sr</strong>:" 					+ e.row['Sr'].value 					+ "<br>";
-		if ( $("#Show12").is(':checked')) HTML += "<strong>U</strong>:" 					+ e.row['U'].value 						+ "<br>";
-		if ( $("#Show13").is(':checked')) HTML += "<strong>Rb</strong>:" 					+ e.row['Rb'].value 					+ "<br>";
-		if ( $("#Show14").is(':checked')) HTML += "<strong>Th</strong>:" 					+ e.row['Th'].value 		+ "<br>";
-		if ( $("#Show15").is(':checked')) HTML += "<strong>Pb</strong>:" 					+ e.row['Pb'].value 		+ "<br>";
-		if ( $("#Show16").is(':checked')) HTML += "<strong>Au</strong>:" 					+ e.row['Au'].value 		+ "<br>";
-		if ( $("#Show17").is(':checked')) HTML += "<strong>Se</strong>:" 					+ e.row['Se'].value 		+ "<br>";
-		if ( $("#Show18").is(':checked')) HTML += "<strong>As</strong>:" 					+ e.row['As'].value 		+ "<br>";
-		if ( $("#Show19").is(':checked')) HTML += "<strong>Hg</strong>:" 					+ e.row['Hg'].value 		+ "<br>";
-		if ( $("#Show20").is(':checked')) HTML += "<strong>Zn</strong>:" 					+ e.row['Zn'].value 		+ "<br>";
-		if ( $("#Show21").is(':checked')) HTML += "<strong>W</strong>:" 					+ e.row['W'].value 			+ "<br>";
-		if ( $("#Show22").is(':checked')) HTML += "<strong>Cu</strong>:" 					+ e.row['Cu'].value 		+ "<br>";
-		if ( $("#Show23").is(':checked')) HTML += "<strong>Ni</strong>:" 					+ e.row['Ni'].value 		+ "<br>";
-		if ( $("#Show24").is(':checked')) HTML += "<strong>Co</strong>:" 					+ e.row['Co'].value 		+ "<br>";
-		if ( $("#Show25").is(':checked')) HTML += "<strong>Fe</strong>:" 					+ e.row['Fe'].value 		+ "<br>";
-		if ( $("#Show26").is(':checked')) HTML += "<strong>Mn</strong>:" 					+ e.row['Mn'].value 		+ "<br>";
-		if ( $("#Show27").is(':checked')) HTML += "<strong>Cr</strong>:" 					+ e.row['Cr'].value 		+ "<br>";
-		if ( $("#Show28").is(':checked')) HTML += "<strong>V</strong>:" 					+ e.row['V'].value 			+ "<br>";
-		if ( $("#Show29").is(':checked')) HTML += "<strong>Ti</strong>:" 					+ e.row['Ti'].value 		+ "<br>";
-		if ( $("#Show30").is(':checked')) HTML += "<strong>Sc</strong>:" 					+ e.row['Sc'].value 		+ "<br>";
-		if ( $("#Show31").is(':checked')) HTML += "<strong>Ca</strong>:" 					+ e.row['Ca'].value 		+ "<br>";
-		if ( $("#Show32").is(':checked')) HTML += "<strong>K</strong>:" 					+ e.row['K'].value 			+ "<br>";
-		if ( $("#Show33").is(':checked')) HTML += "<strong>S</strong>:" 					+ e.row['S'].value 			+ "<br>";
-		if ( $("#Show34").is(':checked')) HTML += "<strong>Ba</strong>:" 					+ e.row['Ba'].value 		+ "<br>";
-		if ( $("#Show35").is(':checked')) HTML += "<strong>Cs</strong>:" 					+ e.row['Cs'].value 		+ "<br>";
-		if ( $("#Show36").is(':checked')) HTML += "<strong>Te</strong>:" 					+ e.row['Te'].value 		+ "<br>";
-		if ( $("#Show37").is(':checked')) HTML += "<strong>Sb</strong>:" 					+ e.row['Sb'].value 		+ "<br>";
-		if ( $("#Show38").is(':checked')) HTML += "<strong>Sn</strong>:" 					+ e.row['Sn'].value 		+ "<br>";
-		if ( $("#Show39").is(':checked')) HTML += "<strong>Cd</strong>:" 					+ e.row['Cd'].value 		+ "<br>";
-		if ( $("#Show40").is(':checked')) HTML += "<strong>Ag</strong>:" 					+ e.row['Ag'].value 		+ "<br>";
-		if ( $("#Show41").is(':checked')) HTML += "<strong>Pd</strong>:" 					+ e.row['Pd'].value 		+ "<br>";
+		if ( $("#Show9").is(':checked')) HTML += "<strong>Ag XRF</strong>:" 				+ e.row['Ag XRF'].value 					+ "<br>";
+		if ( $("#Show10").is(':checked')) HTML += "<strong>Ag ICP</strong>:" 				+ e.row['Ag ICP'].value 					+ "<br>";
+		if ( $("#Show11").is(':checked')) HTML += "<strong>Al ICP</strong>:"				+ e.row['Al ICP'].value 					+ "<br>";
+		if ( $("#Show12").is(':checked')) HTML += "<strong>As ICP</strong>:" 				+ e.row['As ICP'].value 						+ "<br>";
+		if ( $("#Show13").is(':checked')) HTML += "<strong>As XRF</strong>:" 				+ e.row['As XRF'].value 					+ "<br>";
+		if ( $("#Show14").is(':checked')) HTML += "<strong>B ICP</strong>:" 				+ e.row['B ICP'].value 		+ "<br>";
+		if ( $("#Show15").is(':checked')) HTML += "<strong>Ba ICP</strong>:" 				+ e.row['Ba ICP'].value 		+ "<br>";
+		if ( $("#Show16").is(':checked')) HTML += "<strong>Ba XRF</strong>:" 				+ e.row['Ba XRF'].value 		+ "<br>";
+		if ( $("#Show17").is(':checked')) HTML += "<strong>Be ICP</strong>:" 				+ e.row['Be ICP'].value 		+ "<br>";
+		if ( $("#Show18").is(':checked')) HTML += "<strong>Bi ICP</strong>:" 				+ e.row['Bi ICP'].value 		+ "<br>";
+		if ( $("#Show19").is(':checked')) HTML += "<strong>Ca ICP</strong>:" 				+ e.row['Ca ICP'].value 		+ "<br>";
+		if ( $("#Show20").is(':checked')) HTML += "<strong>Ca XRF</strong>:" 				+ e.row['Ca XRF'].value 		+ "<br>";
+		if ( $("#Show21").is(':checked')) HTML += "<strong>Cd ICP</strong>:" 				+ e.row['Cd ICP'].value 		+ "<br>";
+		if ( $("#Show22").is(':checked')) HTML += "<strong>Cd XRF</strong>:" 				+ e.row['Cd XRF'].value 		+ "<br>";
+		if ( $("#Show23").is(':checked')) HTML += "<strong>Co ICP</strong>:" 				+ e.row['Co ICP'].value 		+ "<br>";
+		if ( $("#Show24").is(':checked')) HTML += "<strong>Co XRF</strong>:" 				+ e.row['Co XRF'].value 		+ "<br>";
+		if ( $("#Show25").is(':checked')) HTML += "<strong>Cr ICP</strong>:" 				+ e.row['Cr ICP'].value 		+ "<br>";
+		if ( $("#Show26").is(':checked')) HTML += "<strong>Cr XRF</strong>:" 		       	+ e.row['Cr XRF'].value 		+ "<br>";
+		if ( $("#Show27").is(':checked')) HTML += "<strong>Cs XRF</strong>:" 				+ e.row['Cs XRF'].value 		+ "<br>";
+		if ( $("#Show28").is(':checked')) HTML += "<strong>Cu ICP</strong>:" 				+ e.row['Cu ICP'].value 			+ "<br>";
+		if ( $("#Show29").is(':checked')) HTML += "<strong>Cu XRF</strong>:" 				+ e.row['Cu XRF'].value 		+ "<br>";
+		if ( $("#Show30").is(':checked')) HTML += "<strong>Fe ICP</strong>:" 				+ e.row['Fe ICP'].value 		+ "<br>";
+		if ( $("#Show31").is(':checked')) HTML += "<strong>Fe XRF</strong>:" 				+ e.row['Fe XRF'].value 		+ "<br>";
+		if ( $("#Show32").is(':checked')) HTML += "<strong>Ga ICP</strong>:" 				+ e.row['Ga ICP'].value 			+ "<br>";
+		if ( $("#Show33").is(':checked')) HTML += "<strong>Hg ICP</strong>:" 				+ e.row['Hg ICP'].value 			+ "<br>";
+		if ( $("#Show34").is(':checked')) HTML += "<strong>Hg XRF</strong>:" 				+ e.row['Hg XRF'].value 		+ "<br>";
+		if ( $("#Show35").is(':checked')) HTML += "<strong>K ICP</strong>:" 				+ e.row['K ICP'].value 		+ "<br>";
+		if ( $("#Show36").is(':checked')) HTML += "<strong>K XRF</strong>:" 				+ e.row['K XRF'].value 		+ "<br>";
+		if ( $("#Show37").is(':checked')) HTML += "<strong>La ICP</strong>:" 				+ e.row['La ICP'].value 		+ "<br>";
+		if ( $("#Show38").is(':checked')) HTML += "<strong>Li ICP</strong>:" 				+ e.row['Li ICP'].value 		+ "<br>";
+		if ( $("#Show39").is(':checked')) HTML += "<strong>Mg ICP</strong>:" 				+ e.row['Mg ICP'].value 		+ "<br>";
+		if ( $("#Show40").is(':checked')) HTML += "<strong>Mn ICP</strong>:" 				+ e.row['Mn ICP'].value 		+ "<br>";
+		if ( $("#Show41").is(':checked')) HTML += "<strong>Mn XRF</strong>:" 				+ e.row['Mn XRF'].value 		+ "<br>";
+        
+        if ( $("#Show42").is(':checked')) HTML += "<strong>Mo ICP</strong>:" 				+ e.row['Mo ICP'].value 		+ "<br>";
+        if ( $("#Show43").is(':checked')) HTML += "<strong>Mo XRF</strong>:" 				+ e.row['Mo XRF'].value 		+ "<br>";
+        if ( $("#Show44").is(':checked')) HTML += "<strong>Na ICP</strong>:" 				+ e.row['Na ICP'].value 		+ "<br>";
+        if ( $("#Show45").is(':checked')) HTML += "<strong>Ni ICP</strong>:" 				+ e.row['Ni ICP'].value 		+ "<br>";
+        if ( $("#Show46").is(':checked')) HTML += "<strong>Ni XRF</strong>:" 				+ e.row['Ni XRF'].value 		+ "<br>";
+        
+        
+        if ( $("#Show47").is(':checked')) HTML += "<strong>P ICP</strong>:" 				+ e.row['P ICP'].value 		+ "<br>";        
+        if ( $("#Show48").is(':checked')) HTML += "<strong>Pb ICP</strong>:" 				+ e.row['Pb ICP'].value 		+ "<br>";        
+        if ( $("#Show49").is(':checked')) HTML += "<strong>Pb XRF</strong>:" 				+ e.row['Pb XRF'].value 		+ "<br>";      
+        if ( $("#Show50").is(':checked')) HTML += "<strong>Pd XRF</strong>:" 				+ e.row['Pd XRF'].value 		+ "<br>";       
+        if ( $("#Show51").is(':checked')) HTML += "<strong>Rb XRF</strong>:" 				+ e.row['Rb XRF'].value 		+ "<br>";        
+        if ( $("#Show52").is(':checked')) HTML += "<strong>S ICP</strong>:" 				+ e.row['S ICP'].value 		+ "<br>";      
+        if ( $("#Show53").is(':checked')) HTML += "<strong>S XRF</strong>:" 				+ e.row['S XRF'].value 		+ "<br>";     
+        if ( $("#Show54").is(':checked')) HTML += "<strong>Sb ICP</strong>:" 				+ e.row['Sb ICP'].value 		+ "<br>";      
+        if ( $("#Show55").is(':checked')) HTML += "<strong>Sb XRF</strong>:" 				+ e.row['Sb XRF'].value 		+ "<br>";        
+        if ( $("#Show56").is(':checked')) HTML += "<strong>Sc ICP</strong>:" 				+ e.row['Sc ICP'].value 		+ "<br>";
+        if ( $("#Show57").is(':checked')) HTML += "<strong>Sc XRF</strong>:" 				+ e.row['Sc XRF'].value 		+ "<br>";      
+        if ( $("#Show58").is(':checked')) HTML += "<strong>Se ICP</strong>:" 				+ e.row['Se ICP'].value 		+ "<br>";    
+        if ( $("#Show59").is(':checked')) HTML += "<strong>Se XRF</strong>:" 				+ e.row['Se XRF'].value 		+ "<br>"; 
+        if ( $("#Show60").is(':checked')) HTML += "<strong>Sn ICP</strong>:" 				+ e.row['Sn ICP'].value 		+ "<br>";
+        if ( $("#Show61").is(':checked')) HTML += "<strong>Sn XRF</strong>:" 				+ e.row['Sn XRF'].value 		+ "<br>";
+        if ( $("#Show62").is(':checked')) HTML += "<strong>Sr ICP</strong>:" 				+ e.row['Sr ICP'].value 		+ "<br>";  
+        if ( $("#Show63").is(':checked')) HTML += "<strong>Sr XRF</strong>:" 				+ e.row['Sr XRF'].value 		+ "<br>";   
+        if ( $("#Show64").is(':checked')) HTML += "<strong>Te XRF</strong>:" 				+ e.row['Te XRF'].value 		+ "<br>";       
+        if ( $("#Show65").is(':checked')) HTML += "<strong>Th ICP</strong>:" 				+ e.row['Th ICP'].value 		+ "<br>"; 
+        
+        
+        
+        if ( $("#Show66").is(':checked')) HTML += "<strong>Th XRF</strong>:" 				+ e.row['Th XRF'].value 		+ "<br>";
+        if ( $("#Show67").is(':checked')) HTML += "<strong>Ti ICP</strong>:" 				+ e.row['Ti ICP'].value 		+ "<br>";
+        if ( $("#Show68").is(':checked')) HTML += "<strong>Ti XRF</strong>:" 				+ e.row['Ti XRF'].value 		+ "<br>";
+        if ( $("#Show69").is(':checked')) HTML += "<strong>Tl ICP</strong>:" 				+ e.row['Tl ICP'].value 		+ "<br>";    
+        
+        if ( $("#Show70").is(':checked')) HTML += "<strong>U ICP</strong>:" 				+ e.row['U ICP'].value 		+ "<br>";
+        
+                
+        if ( $("#Show71").is(':checked')) HTML += "<strong>U XRF</strong>:" 				+ e.row['U XRF'].value 		+ "<br>";        
+        if ( $("#Show72").is(':checked')) HTML += "<strong>V ICP</strong>:" 				+ e.row['V ICP'].value 		+ "<br>";        
+        if ( $("#Show73").is(':checked')) HTML += "<strong>V XRF</strong>:" 				+ e.row['V XRF'].value 		+ "<br>";
+        if ( $("#Show74").is(':checked')) HTML += "<strong>W ICP</strong>:" 				+ e.row['W ICP'].value 		+ "<br>";        
+        if ( $("#Show75").is(':checked')) HTML += "<strong>W XRF</strong>:" 				+ e.row['W XRF'].value 		+ "<br>";        
+        if ( $("#Show76").is(':checked')) HTML += "<strong>Zn ICP</strong>:" 				+ e.row['Zn ICP'].value 		+ "<br>";
+        if ( $("#Show78").is(':checked')) HTML += "<strong>Zn XRF</strong>:" 				+ e.row['Zn XRF'].value 		+ "<br>";        
+        if ( $("#Show79").is(':checked')) HTML += "<strong>Altura SNM (m)2</strong>:" 				+ e.row['Altura SNM (m)2'].value 		+ "<br>";        
+        if ( $("#Show80").is(':checked')) HTML += "<strong>Geomorfología</strong>:" 				+ e.row['Geomorfología'].value 		+ "<br>";
+        if ( $("#Show81").is(':checked')) HTML += "<strong>Geologia</strong>:" 				+ e.row['Geologia'].value 		+ "<br>";        
+        
+        
 		HTML +="</div>";
 		infoWindow.setOptions({
 			content: HTML,
@@ -329,6 +455,15 @@ var MapsLib = {
       MapsLib.addrMarker.setMap(null);
     if (MapsLib.searchRadiusCircle != null)
       MapsLib.searchRadiusCircle.setMap(null);
+      // aca agrego lo que falta del conjunto if
+      
+   if (MapsLib.polygon1 != null)
+      MapsLib.polygon1.setMap(null);
+   if (MapsLib.polygon2 != null)
+      MapsLib.polygon2.setMap(null);
+ 
+      
+      
   },
 
   findMe: function() {
@@ -434,7 +569,7 @@ var MapsLib = {
     // select specific columns from the fusion table to display in th list
     // NOTE: we'll be referencing these by their index (0 = School, 1 = GradeLevels, etc), so order matters!
 	
-    var selectColumns = "'Nombre muestra','Fecha toma muestra 11','profundidad (cm)','Número de Zona','Categoría Minera','Coordenadas','Potencial Redox (mV)','pH', 'Conductividad (µS/cm)','Mo','Zr','Sr','U','Rb','Th','Pb','Au','Se','As','Hg','Zn','W','Cu','Ni','Co','Fe','Mn','Cr','V','Ti','Sc','Ca','K','S','Ba','Cs','Te','Sb','Sn','Cd','Ag','Pd'";
+    var selectColumns = "'Nombre muestra','Fecha toma muestra 11','profundidad (cm)','Número de Zona','Categoría Minera','Coordenadas','Potencial Redox (mV)','pH', 'Conductividad (µS/cm)','Ag XRF','Ag ICP','Al ICP','As ICP','As XRF','B ICP','Ba ICP','Ba XRF','Be ICP','Bi ICP','Ca ICP','Ca XRF','Cd ICP','Cd XRF','Co ICP','Co XRF','Cr ICP','Cr XRF','Cs XRF','Cu ICP','Cu XRF','Fe ICP','Fe XRF','Ga ICP','Hg ICP','Hg XRF','K ICP','K XRF','La ICP','Li ICP','Mg ICP','Mn ICP','Mn XRF', 'Mo ICP', 'Mo XRF', 'Na ICP', 'Ni ICP', 'Ni XRF', 'P ICP', 'Pb ICP','Pb XRF','Pd XRF','Rb XRF','S ICP','S XRF','Sb ICP','Sb XRF','Sc ICP', 'Sc XRF','Se ICP','Se XRF','Sn ICP','Sn XRF','Sr ICP','Sr XRF','Te XRF','Th ICP', 'Th XRF','Ti ICP','Ti XRF','Tl ICP','U ICP','U XRF','V ICP','V XRF','W ICP','W XRF','Zn ICP','Zn XRF','ZrXRF','Altura SNM (m)2','Geomorfología','Geologia'";
     MapsLib.query(selectColumns, whereClause,"", "", 500, "MapsLib.displayList");
   },
 
@@ -458,48 +593,89 @@ var MapsLib = {
       <table class='table' id ='list_table'>\
         <thead>\
           <tr><small>"
-			if ( $("#Show0").is(':checked')) list_table += "<th>Nombre muestra </th>";
-			if ( $("#Show1").is(':checked')) list_table += "<th>Fecha muestra </th>";
-			if ( $("#Show2").is(':checked')) list_table += "<th>Profundidad </th>";
-			if ( $("#Show3").is(':checked')) list_table += "<th>Número zona </th>";
-			if ( $("#Show4").is(':checked')) list_table += "<th>Categoría Minera </th>";
-			if ( $("#Show5").is(':checked')) list_table += "<th>Coordenadas </th>";
+			if ( $("#Show0").is(':checked')) list_table += "<th>Sample Name </th>";
+			if ( $("#Show1").is(':checked')) list_table += "<th>Sample Date </th>";
+			if ( $("#Show2").is(':checked')) list_table += "<th>Depth </th>";
+			if ( $("#Show3").is(':checked')) list_table += "<th>Zone </th>";
+			if ( $("#Show4").is(':checked')) list_table += "<th>Mining Category </th>";
+			if ( $("#Show5").is(':checked')) list_table += "<th>Coordinate </th>";
 			if ( $("#Show6").is(':checked')) list_table += "<th>Pot.Redox mV </th>";
 			if ( $("#Show7").is(':checked')) list_table += "<th>pH </th>";
-			if ( $("#Show8").is(':checked')) list_table += "<th>Conductividad </th>";
-			if ( $("#Show9").is(':checked')) list_table += "<th>Mo</th>";
-			if ( $("#Show10").is(':checked')) list_table += "<th>Zr</th>";
-			if ( $("#Show11").is(':checked')) list_table += "<th>Sr</th>";
-			if ( $("#Show12").is(':checked')) list_table += "<th>U</th>";
-			if ( $("#Show13").is(':checked')) list_table += "<th>Rb</th>";
-			if ( $("#Show14").is(':checked')) list_table += "<th>Th</th>";
-			if ( $("#Show15").is(':checked')) list_table += "<th>Pb</th>";
-			if ( $("#Show16").is(':checked')) list_table += "<th>Au</th>";
-			if ( $("#Show17").is(':checked')) list_table += "<th>Se</th>";
-			if ( $("#Show18").is(':checked')) list_table += "<th>As</th>";
-			if ( $("#Show19").is(':checked')) list_table += "<th>Hg</th>";
-			if ( $("#Show20").is(':checked')) list_table += "<th>Zn</th>";
-			if ( $("#Show21").is(':checked')) list_table += "<th>W</th>";
-			if ( $("#Show22").is(':checked')) list_table += "<th>Cu</th>";
-			if ( $("#Show23").is(':checked')) list_table += "<th>Ni</th>";
-			if ( $("#Show24").is(':checked')) list_table += "<th>Co</th>";
-			if ( $("#Show25").is(':checked')) list_table += "<th>Fe</th>";
-			if ( $("#Show26").is(':checked')) list_table += "<th>Mn</th>";
-			if ( $("#Show27").is(':checked')) list_table += "<th>Cr</th>";
-			if ( $("#Show28").is(':checked')) list_table += "<th>V</th>";
-			if ( $("#Show29").is(':checked')) list_table += "<th>Ti</th>";
-			if ( $("#Show30").is(':checked')) list_table += "<th>Sc</th>";
-			if ( $("#Show31").is(':checked')) list_table += "<th>Ca</th>";
-			if ( $("#Show32").is(':checked')) list_table += "<th>K</th>";
-			if ( $("#Show33").is(':checked')) list_table += "<th>S</th>";
-			if ( $("#Show34").is(':checked')) list_table += "<th>Ba</th>";
-			if ( $("#Show35").is(':checked')) list_table += "<th>Cs</th>";
-			if ( $("#Show36").is(':checked')) list_table += "<th>Te</th>";
-			if ( $("#Show37").is(':checked')) list_table += "<th>Sb</th>";
-			if ( $("#Show38").is(':checked')) list_table += "<th>Sn</th>";
-			if ( $("#Show39").is(':checked')) list_table += "<th>Cd</th>";
-			if ( $("#Show40").is(':checked')) list_table += "<th>Ag</th>";
-			if ( $("#Show41").is(':checked')) list_table += "<th>Pd</th>";
+			if ( $("#Show8").is(':checked')) list_table += "<th>Conductivity </th>";
+			if ( $("#Show9").is(':checked')) list_table += "<th>Ag XRF</th>";
+			if ( $("#Show10").is(':checked')) list_table += "<th>Ag ICP</th>";
+			if ( $("#Show11").is(':checked')) list_table += "<th>Al ICP</th>";
+			if ( $("#Show12").is(':checked')) list_table += "<th>As ICP</th>";
+			if ( $("#Show13").is(':checked')) list_table += "<th>As XRF</th>";
+			if ( $("#Show14").is(':checked')) list_table += "<th>B ICP</th>";
+			if ( $("#Show15").is(':checked')) list_table += "<th>Ba ICP</th>";
+			if ( $("#Show16").is(':checked')) list_table += "<th>Ba XRF</th>";
+			if ( $("#Show17").is(':checked')) list_table += "<th>Be ICP</th>";
+			if ( $("#Show18").is(':checked')) list_table += "<th>Bi ICP</th>";
+			if ( $("#Show19").is(':checked')) list_table += "<th>Ca ICP</th>";
+			if ( $("#Show20").is(':checked')) list_table += "<th>Ca XRF</th>";
+			if ( $("#Show21").is(':checked')) list_table += "<th>Cd ICP</th>";
+			if ( $("#Show22").is(':checked')) list_table += "<th>Cd XRF</th>";
+			if ( $("#Show23").is(':checked')) list_table += "<th>Co ICP</th>";
+			if ( $("#Show24").is(':checked')) list_table += "<th>Co XRF</th>";
+			if ( $("#Show25").is(':checked')) list_table += "<th>Cr ICP</th>";
+			if ( $("#Show26").is(':checked')) list_table += "<th>Cr XRF</th>";
+			if ( $("#Show27").is(':checked')) list_table += "<th>Cs XRF</th>";
+			if ( $("#Show28").is(':checked')) list_table += "<th>Cu ICP</th>";
+			if ( $("#Show29").is(':checked')) list_table += "<th>Cu XRF</th>";
+			if ( $("#Show30").is(':checked')) list_table += "<th>Fe ICP</th>";
+			if ( $("#Show31").is(':checked')) list_table += "<th>Fe XRF</th>";
+			if ( $("#Show32").is(':checked')) list_table += "<th>Ga ICP</th>";
+			if ( $("#Show33").is(':checked')) list_table += "<th>Hg ICP</th>";
+			if ( $("#Show34").is(':checked')) list_table += "<th>Hg XRF</th>";
+			if ( $("#Show35").is(':checked')) list_table += "<th>K ICP</th>";
+			if ( $("#Show36").is(':checked')) list_table += "<th>K XRF</th>";
+			if ( $("#Show37").is(':checked')) list_table += "<th>La ICP</th>";
+			if ( $("#Show38").is(':checked')) list_table += "<th>Li ICP</th>";
+			if ( $("#Show39").is(':checked')) list_table += "<th>Mg ICP</th>";
+			if ( $("#Show40").is(':checked')) list_table += "<th>Mn ICP</th>";
+			if ( $("#Show41").is(':checked')) list_table += "<th>Mn XRF</th>";      
+			if ( $("#Show42").is(':checked')) list_table += "<th>Mo ICP</th>";        
+			if ( $("#Show43").is(':checked')) list_table += "<th>Mo XRF</th>";           
+			if ( $("#Show44").is(':checked')) list_table += "<th>Na ICP</th>";  
+			if ( $("#Show45").is(':checked')) list_table += "<th>Ni ICP</th>";          
+			if ( $("#Show46").is(':checked')) list_table += "<th>Ni XRF</th>"; 
+			if ( $("#Show46").is(':checked')) list_table += "<th>Ni XRF</th>";        
+			if ( $("#Show47").is(':checked')) list_table += "<th>P ICP</th>";        
+			if ( $("#Show48").is(':checked')) list_table += "<th>Pb ICP</th>";        
+			if ( $("#Show49").is(':checked')) list_table += "<th>Pb XRF</th>";        
+			if ( $("#Show50").is(':checked')) list_table += "<th>Pd XRF</th>";        
+			if ( $("#Show51").is(':checked')) list_table += "<th>Rb XRF</th>";        
+			if ( $("#Show52").is(':checked')) list_table += "<th>S ICP</th>";
+			if ( $("#Show53").is(':checked')) list_table += "<th>S XRF</th>";        
+			if ( $("#Show54").is(':checked')) list_table += "<th>Sb ICP</th>";        
+			if ( $("#Show55").is(':checked')) list_table += "<th>Sb XRF</th>";        
+			if ( $("#Show56").is(':checked')) list_table += "<th>Sc ICP</th>";        
+			if ( $("#Show57").is(':checked')) list_table += "<th>Sc XRF</th>";        
+			if ( $("#Show58").is(':checked')) list_table += "<th>Se ICP</th>";        
+			if ( $("#Show59").is(':checked')) list_table += "<th>Se XRF</th>";        
+			if ( $("#Show60").is(':checked')) list_table += "<th>Sn ICP</th>";
+			if ( $("#Show61").is(':checked')) list_table += "<th>Sn XRF</th>";        
+			if ( $("#Show62").is(':checked')) list_table += "<th>Sr ICP</th>";        
+			if ( $("#Show63").is(':checked')) list_table += "<th>Sr XRF</th>";        
+			if ( $("#Show64").is(':checked')) list_table += "<th>Te XRF</th>";        
+			if ( $("#Show65").is(':checked')) list_table += "<th>Th ICP</th>";        
+			if ( $("#Show66").is(':checked')) list_table += "<th>Th XRF</th>";        
+			if ( $("#Show67").is(':checked')) list_table += "<th>Ti ICP</th>";        
+			if ( $("#Show68").is(':checked')) list_table += "<th>Ti XRF</th>";
+			if ( $("#Show69").is(':checked')) list_table += "<th>Tl ICP</th>";        
+			if ( $("#Show70").is(':checked')) list_table += "<th>U ICP</th>";        
+			if ( $("#Show71").is(':checked')) list_table += "<th>U XRF</th>";        
+			if ( $("#Show72").is(':checked')) list_table += "<th>V ICP</th>";        
+			if ( $("#Show73").is(':checked')) list_table += "<th>V XRF</th>";        
+			if ( $("#Show74").is(':checked')) list_table += "<th>W ICP</th>";        
+			if ( $("#Show75").is(':checked')) list_table += "<th>W XRF</th>";        
+			if ( $("#Show76").is(':checked')) list_table += "<th>Zn ICP</th>";
+			if ( $("#Show77").is(':checked')) list_table += "<th>Zn XRF</th>";
+			if ( $("#Show78").is(':checked')) list_table += "<th>Zr XRF</th>";        
+			if ( $("#Show79").is(':checked')) list_table += "<th>Altura SNM (m)2</th>";        
+			if ( $("#Show80").is(':checked')) list_table += "<th>Geomorfología</th>";        
+			if ( $("#Show81").is(':checked')) list_table += "<th>Geologia</th>";           
 			list_table += "</small></tr>\
 			</thead>\
 		<tbody>";
@@ -550,7 +726,47 @@ var MapsLib = {
 				if ( $("#Show38").is(':checked')) list_table += "<td>" + rows[row][38] +"</td>";
 				if ( $("#Show39").is(':checked')) list_table += "<td>" + rows[row][39] +"</td>";
 				if ( $("#Show40").is(':checked')) list_table += "<td>" + rows[row][40] +"</td>";
-				if ( $("#Show41").is(':checked')) list_table += "<td>" + rows[row][41] +"</td>";
+				if ( $("#Show41").is(':checked')) list_table += "<td>" + rows[row][41] +"</td>";             
+ 				if ( $("#Show42").is(':checked')) list_table += "<td>" + rows[row][42] +"</td>";
+ 				if ( $("#Show43").is(':checked')) list_table += "<td>" + rows[row][43] +"</td>";              
+            	if ( $("#Show44").is(':checked')) list_table += "<td>" + rows[row][44] +"</td>"; 
+ 				if ( $("#Show45").is(':checked')) list_table += "<td>" + rows[row][45] +"</td>";               
+  				if ( $("#Show46").is(':checked')) list_table += "<td>" + rows[row][46] +"</td>";  
+  				if ( $("#Show47").is(':checked')) list_table += "<td>" + rows[row][47] +"</td>";                
+  				if ( $("#Show48").is(':checked')) list_table += "<td>" + rows[row][48] +"</td>";                
+  				if ( $("#Show49").is(':checked')) list_table += "<td>" + rows[row][49] +"</td>";  
+  				if ( $("#Show50").is(':checked')) list_table += "<td>" + rows[row][50] +"</td>";                
+  				if ( $("#Show51").is(':checked')) list_table += "<td>" + rows[row][51] +"</td>";                
+  				if ( $("#Show52").is(':checked')) list_table += "<td>" + rows[row][52] +"</td>";  
+  				if ( $("#Show53").is(':checked')) list_table += "<td>" + rows[row][53] +"</td>";                
+  				if ( $("#Show54").is(':checked')) list_table += "<td>" + rows[row][54] +"</td>";                
+  				if ( $("#Show55").is(':checked')) list_table += "<td>" + rows[row][55] +"</td>";  
+  				if ( $("#Show56").is(':checked')) list_table += "<td>" + rows[row][56] +"</td>";                
+  				if ( $("#Show57").is(':checked')) list_table += "<td>" + rows[row][57] +"</td>";                
+  				if ( $("#Show58").is(':checked')) list_table += "<td>" + rows[row][58] +"</td>";  
+  				if ( $("#Show59").is(':checked')) list_table += "<td>" + rows[row][59] +"</td>";                
+  				if ( $("#Show60").is(':checked')) list_table += "<td>" + rows[row][60] +"</td>";                
+  				if ( $("#Show61").is(':checked')) list_table += "<td>" + rows[row][61] +"</td>";  
+  				if ( $("#Show62").is(':checked')) list_table += "<td>" + rows[row][62] +"</td>";                
+  				if ( $("#Show63").is(':checked')) list_table += "<td>" + rows[row][63] +"</td>";                
+  				if ( $("#Show64").is(':checked')) list_table += "<td>" + rows[row][64] +"</td>";  
+  				if ( $("#Show65").is(':checked')) list_table += "<td>" + rows[row][65] +"</td>";                
+  				if ( $("#Show66").is(':checked')) list_table += "<td>" + rows[row][66] +"</td>";                
+  				if ( $("#Show67").is(':checked')) list_table += "<td>" + rows[row][67] +"</td>";  
+  				if ( $("#Show68").is(':checked')) list_table += "<td>" + rows[row][68] +"</td>";                
+  				if ( $("#Show69").is(':checked')) list_table += "<td>" + rows[row][69] +"</td>";                
+  				if ( $("#Show70").is(':checked')) list_table += "<td>" + rows[row][70] +"</td>";  
+  				if ( $("#Show71").is(':checked')) list_table += "<td>" + rows[row][71] +"</td>";                
+  				if ( $("#Show72").is(':checked')) list_table += "<td>" + rows[row][72] +"</td>";                
+  				if ( $("#Show73").is(':checked')) list_table += "<td>" + rows[row][73] +"</td>";  
+  				if ( $("#Show74").is(':checked')) list_table += "<td>" + rows[row][74] +"</td>";                
+  				if ( $("#Show75").is(':checked')) list_table += "<td>" + rows[row][75] +"</td>";                
+  				if ( $("#Show76").is(':checked')) list_table += "<td>" + rows[row][76] +"</td>";  
+  				if ( $("#Show77").is(':checked')) list_table += "<td>" + rows[row][77] +"</td>";                
+  				if ( $("#Show78").is(':checked')) list_table += "<td>" + rows[row][78] +"</td>";                
+  				if ( $("#Show79").is(':checked')) list_table += "<td>" + rows[row][79] +"</td>";  
+  				if ( $("#Show80").is(':checked')) list_table += "<td>" + rows[row][80] +"</td>";                
+  				if ( $("#Show81").is(':checked')) list_table += "<td>" + rows[row][81] +"</td>";                         
 			  list_table += "</small></tr>";
 		  }
 		  list_table += "\
